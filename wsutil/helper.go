@@ -232,6 +232,14 @@ func HandleControlMessage(conn io.Writer, state ws.State, msg Message) error {
 	})
 }
 
+type ControlFrameHandlerBuilder func(w io.Writer, state ws.State) FrameHandlerFunc
+
+var frameHandlerBuilder = ControlFrameHandler
+
+func SetDefaultFrameHandlerBuilder(h ControlFrameHandlerBuilder) {
+	frameHandlerBuilder = h
+}
+
 // ControlFrameHandler returns FrameHandlerFunc for handling control frames.
 // For more info see ControlHandler docs.
 func ControlFrameHandler(w io.Writer, state ws.State) FrameHandlerFunc {
@@ -246,7 +254,7 @@ func ControlFrameHandler(w io.Writer, state ws.State) FrameHandlerFunc {
 }
 
 func readData(rw io.ReadWriter, s ws.State, want ws.OpCode) ([]byte, ws.OpCode, error) {
-	controlHandler := ControlFrameHandler(rw, s)
+	controlHandler := frameHandlerBuilder(rw, s)
 	rd := Reader{
 		Source:          rw,
 		State:           s,
