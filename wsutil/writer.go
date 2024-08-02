@@ -2,10 +2,10 @@ package wsutil
 
 import (
 	"fmt"
+	"github.com/gobwas/ws/internal/pbytes"
 	"io"
 
 	"github.com/gobwas/pool"
-	"github.com/gobwas/pool/pbytes"
 	"github.com/gobwas/ws"
 )
 

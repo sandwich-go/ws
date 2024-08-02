@@ -1,9 +1,9 @@
 package wsutil
 
 import (
+	"github.com/gobwas/ws/internal/pbytes"
 	"io"
 
-	"github.com/gobwas/pool/pbytes"
 	"github.com/gobwas/ws"
 )
 

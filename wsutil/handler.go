@@ -2,11 +2,11 @@ package wsutil
 
 import (
 	"errors"
+	"github.com/gobwas/ws/internal/pbytes"
 	"io"
 	"io/ioutil"
 	"strconv"
 
-	"github.com/gobwas/pool/pbytes"
 	"github.com/gobwas/ws"
 )
 
